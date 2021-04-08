@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as echarts from 'echarts';
-import { EchartModule } from 'src/app/module';
+import { EChartsOption } from 'echarts/types/dist/shared';
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +9,7 @@ import { EchartModule } from 'src/app/module';
 })
 export class ProfileComponent implements OnInit {
   chartOptions;
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
     this.getOptions();
@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
     let end = api.coord([api.value(2), categoryIndex]);
     let height = 10;//api.size([0, 1])[1] * 0.6;
 
+    let isOutline = (api.value(4) === 'all');
     let rectShape = echarts.graphic.clipRectByRect(
       {
         x: start[0],
@@ -39,12 +40,21 @@ export class ProfileComponent implements OnInit {
       }
     );
 
+    let style = {};
+    if (isOutline) {
+      console.log(api.value(4), rectShape.width);
+      rectShape.width = 700;
+      style = { ...api.style(), stroke: 'black', lineWidth:1, fill: '#00000000' };
+    } else {
+      style = { ...api.style() };
+    }
+    // console.log(categoryIndex, api.style());
     return (
       rectShape && {
         type: 'rect',
         transition: ['shape'],
         shape: rectShape,
-        style: api.style(),
+        style: style,
       }
     );
   }
@@ -66,6 +76,10 @@ export class ProfileComponent implements OnInit {
     // Generate mock data
     categories.forEach(function (category, index) {
       let baseTime = startTime;
+      data.push({
+        name: category,
+        value: [index, startTime, startTime + 10233, 10233, 'all'],
+      });
       for (let i = 0; i < dataCount; i++) {
         let typeItem = types[Math.round(Math.random() * (types.length - 1))];
         let duration = Math.round(Math.random() * 10000);
@@ -110,6 +124,7 @@ export class ProfileComponent implements OnInit {
       },
       xAxis: {
         min: startTime,
+        splitNumber: 10,
         scale: true,
         axisLabel: {
           formatter: function (val) {
@@ -125,7 +140,8 @@ export class ProfileComponent implements OnInit {
           type: 'custom',
           renderItem: this.renderItem,
           itemStyle: {
-            opacity: 0.8,
+            opacity: 0.9,
+            stroke: 'red'
           },
           encode: {
             x: [1, 2],
