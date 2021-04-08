@@ -1,5 +1,12 @@
 <div class="nav-top flex-box">
-  <span>{{ "title" | translate }}</span>
+  <div class="flex-box">
+    <p-button
+      type="button"
+      (click)="sidebarVisible = true"
+      icon="pi pi-arrow-right"
+    ></p-button>
+    <span class="title">{{ "title" | translate }}</span>
+  </div>
   <p-dropdown
     [options]="langs"
     [(ngModel)]="selectedLang"

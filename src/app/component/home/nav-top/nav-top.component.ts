@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { PageService } from 'src/app/service/page.service';
 import { CURRENT_LANG, EN, ZH } from 'src/app/utility';
 
 @Component({
@@ -12,11 +13,17 @@ export class NavTopComponent implements OnInit {
   langs = [{ label: 'English', value: EN },
   { label: '中文', value: ZH }];
   selectedLang = EN;
-  constructor(private translate: TranslateService) { }
+  public get sidebarVisible() {
+    return this.page.sidebarVisible;
+  }
+  public set sidebarVisible(value) {
+    this.page.sidebarVisible = value;
+  }
+  constructor(private translate: TranslateService, private page: PageService) { }
 
   ngOnInit(): void {
     let s = localStorage.getItem(CURRENT_LANG);
-    if(s){
+    if (s) {
       this.selectedLang = s;
     }
   }
