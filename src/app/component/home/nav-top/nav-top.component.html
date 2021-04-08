@@ -1,0 +1,8 @@
+<div class="nav-top flex-box">
+  <span>{{ "title" | translate }}</span>
+  <p-dropdown
+    [options]="langs"
+    [(ngModel)]="selectedLang"
+    (onChange)="onChange()"
+  ></p-dropdown>
+</div>
