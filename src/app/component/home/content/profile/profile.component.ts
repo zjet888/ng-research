@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as echarts from 'echarts';
+import { ECharts } from 'echarts/core';
 import { EChartsOption } from 'echarts/types/dist/shared';
 
 @Component({
@@ -7,18 +8,27 @@ import { EChartsOption } from 'echarts/types/dist/shared';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, AfterViewInit {
   chartOptions;
+  @ViewChild('chart') chart: ElementRef;
+  width = 0;
   constructor() { }
+  ngAfterViewInit(): void {
+    if (this.chart && this.chart.nativeElement) {
+      this.width = this.chart.nativeElement.clientWidth;
+      setTimeout(() => {
+        this.getOptions();
+      })
+    }
+  }
 
   ngOnInit(): void {
-    this.getOptions();
   }
   onChartClick(event) {
     console.log(event);
   }
 
-  renderItem(params, api) {
+  renderItem = (params, api) => {
     let categoryIndex = api.value(0);
     let start = api.coord([api.value(1), categoryIndex]);
     let end = api.coord([api.value(2), categoryIndex]);
@@ -42,13 +52,11 @@ export class ProfileComponent implements OnInit {
 
     let style = {};
     if (isOutline) {
-      console.log(api.value(4), rectShape.width);
-      rectShape.width = 700;
-      style = { ...api.style(), stroke: 'black', lineWidth:1, fill: '#00000000' };
+      rectShape.width = this.width * 0.8;
+      style = { ...api.style(), stroke: 'black', lineWidth: 1, fill: '#00000000' };
     } else {
       style = { ...api.style() };
     }
-    // console.log(categoryIndex, api.style());
     return (
       rectShape && {
         type: 'rect',
@@ -87,9 +95,7 @@ export class ProfileComponent implements OnInit {
           name: typeItem.name,
           value: [index, baseTime, (baseTime += duration), duration],
           itemStyle: {
-            normal: {
-              color: typeItem.color,
-            },
+            color: typeItem.color,
           },
         });
         baseTime += Math.round(Math.random() * 2000);
