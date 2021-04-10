@@ -52,7 +52,20 @@ export class ProfileComponent implements OnInit, AfterViewInit {
 
     let style = {};
     if (isOutline) {
-      rectShape.width = this.width * 0.8;
+      rectShape = echarts.graphic.clipRectByRect(
+        {
+          x: params.coordSys.x,
+          y: start[1] - height / 2,
+          width: params.coordSys.width,
+          height: height,
+        },
+        {
+          x: params.coordSys.x,
+          y: params.coordSys.y,
+          width: params.coordSys.width,
+          height: params.coordSys.height,
+        }
+      );
       style = { ...api.style(), stroke: 'black', lineWidth: 1, fill: '#00000000' };
     } else {
       style = { ...api.style() };
@@ -71,7 +84,10 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     let data = [];
     let dataCount = 10;
     let startTime = +new Date();
-    let categories = ['categoryA', 'categoryB', 'categoryC'];
+    let categories = [];
+    for (let i = 0; i < 10; i++) {
+      categories.push(`category-${i}`);
+    }
     let types = [
       { name: 'JS Heap', color: '#7b9ce1' },
       { name: 'Documents', color: '#bd6d6c' },
@@ -82,7 +98,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     ];
 
     // Generate mock data
-    categories.forEach(function (category, index) {
+    categories.forEach((category, index) => {
       let baseTime = startTime;
       data.push({
         name: category,
@@ -105,7 +121,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     this.chartOptions = {
       backgroundColor: '#ffffff',
       tooltip: {
-        formatter: function (params) {
+        formatter: (params) => {
           return params.marker + params.name + ': ' + params.value[3] + ' ms';
         },
       },
