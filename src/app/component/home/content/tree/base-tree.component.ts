@@ -80,6 +80,9 @@ export abstract class BaseTreeComponent extends AutoCleaner implements OnInit {
     }
     let sub = this.mock.loadTreeData1().subscribe((d) => {
       this.data = d;
+      this.data.children.forEach((datum, index) => {
+        datum.collapsed = true;
+      });
       this.createOption();
       if (this.echartsInstance) {
         this.echartsInstance.hideLoading();

@@ -18,6 +18,9 @@ export class ContentComponent implements OnInit {
   get isTreeLeftRight() {
     return this.page.currentPage === Page.TreeLeftRight;
   }
+  get isTreeRightLeft() {
+    return this.page.currentPage === Page.TreeRightLeft;
+  }
   get isTreeBottomTop() {
     return this.page.currentPage === Page.TreeBottomTop;
   }
@@ -26,6 +29,9 @@ export class ContentComponent implements OnInit {
   }
   get isTreeRadial() {
     return this.page.currentPage === Page.TreeRadial;
+  }
+  get isTreePolyline() {
+    return this.page.currentPage === Page.TreePolyline;
   }
   get isTreeTopBottom() {
     return this.page.currentPage === Page.TreeTopBottom;

@@ -28,6 +28,18 @@ export class SidebarComponent implements OnInit {
       icon: 'pi pi-sitemap',
     },
     {
+      label: Page.TreeRightLeft,
+      value: Page.TreeRightLeft,
+      id: Page.TreeRightLeft,
+      icon: 'pi pi-sitemap',
+    },
+    {
+      label: Page.TreeTopBottom,
+      value: Page.TreeTopBottom,
+      id: Page.TreeTopBottom,
+      icon: 'pi pi-sitemap',
+    },
+    {
       label: Page.TreeBottomTop,
       value: Page.TreeBottomTop,
       id: Page.TreeBottomTop,
@@ -46,9 +58,9 @@ export class SidebarComponent implements OnInit {
       icon: 'pi pi-sitemap',
     },
     {
-      label: Page.TreeTopBottom,
-      value: Page.TreeTopBottom,
-      id: Page.TreeTopBottom,
+      label: Page.TreePolyline,
+      value: Page.TreePolyline,
+      id: Page.TreePolyline,
       icon: 'pi pi-sitemap',
     },
   ];

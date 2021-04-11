@@ -2,8 +2,10 @@
   "title": "Ng 研究",
   "profile": "Profile",
   "treeLeftRight": "Left Right Tree",
+  "treeRightLeft": "Right Left Tree",
   "treeTopBottom": "Top Bottom Tree",
   "treeBottomTop": "Bottom Top Tree",
   "treeMultiple": "Multiple Tree",
+  "treePolyline": "Polyline Tree",
   "treeRadial": "Radial Tree"
 }
