@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as echarts from 'echarts';
 import { ECharts } from 'echarts/core';
-import { EChartsOption } from 'echarts/types/dist/shared';
+import { CustomSeriesOption, EChartsOption } from 'echarts/types/dist/shared';
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +9,7 @@ import { EChartsOption } from 'echarts/types/dist/shared';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit, AfterViewInit {
-  chartOptions;
+  chartOptions: CustomSeriesOption;
   @ViewChild('chart') chart: ElementRef;
   width = 0;
   constructor() { }
@@ -80,6 +80,8 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     );
   }
 
+  min = 0;
+  max = 0;
   getOptions() {
     let data = [];
     let dataCount = 10;
@@ -97,6 +99,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
       { name: 'GPU', color: '#72b362' },
     ];
 
+    this.min = startTime;
     // Generate mock data
     categories.forEach((category, index) => {
       let baseTime = startTime;
@@ -114,10 +117,19 @@ export class ProfileComponent implements OnInit, AfterViewInit {
             color: typeItem.color,
           },
         });
+        if (this.max < baseTime + duration) {
+          this.max = baseTime + duration;
+        }
         baseTime += Math.round(Math.random() * 2000);
       }
     });
 
+    let diff = this.max - this.min;
+    let count = Math.floor(diff / 10);
+    let xData = [];
+    for (let i = 0; i < count; i++) {
+      xData.push(10 * i);
+    }
     this.chartOptions = {
       backgroundColor: '#ffffff',
       tooltip: {
@@ -134,7 +146,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
           type: 'slider',
           filterMode: 'weakFilter',
           showDataShadow: false,
-          top: "91%",
+          top: "85%",
           labelFormatter: '',
         },
         {
@@ -143,14 +155,33 @@ export class ProfileComponent implements OnInit, AfterViewInit {
         },
       ],
       grid: {
+        height: "70%"
       },
       xAxis: {
-        min: startTime,
-        splitNumber: 10,
+        // type: 'category',
+        // data: xData,
+        splitArea: { show: true },
+        min: this.min,
+        max: this.max,
+        interval: 10,
+        // splitNumber: 5,
         scale: true,
+        axisTick: {
+          show: 'auto',
+          inside: true,
+          lineStyle: {
+            color: 'red',
+            width: 1
+          },
+          length: 1,
+        },
         axisLabel: {
+          rotate: 45,
           formatter: function (val) {
-            return Math.max(0, val - startTime) + ' ms';
+            if ((val - startTime) % 10000 === 0) {
+              return Math.max(0, val - startTime) + ' ms';
+            }
+           
           },
         },
       },
@@ -172,6 +203,6 @@ export class ProfileComponent implements OnInit, AfterViewInit {
           data: data,
         },
       ],
-    };
+    } as any;
   }
 }

@@ -6,6 +6,7 @@ import { NavTopComponent } from './component/home/nav-top/nav-top.component';
 import { SidebarComponent } from './component/home/sidebar/sidebar.component';
 import { ContentComponent } from './component/home/content/content.component';
 import { ProfileComponent } from './component/home/content/profile/profile.component';
+import { LeftRightTreeComponent } from './component/home/content/left-right-tree/left-right-tree.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -20,7 +21,8 @@ const modules = [SharedModule, EchartModule];
     NavTopComponent,
     SidebarComponent,
     ContentComponent,
-    ProfileComponent
+    ProfileComponent,
+    LeftRightTreeComponent
   ]
 })
 export class AppRoutingModule { }

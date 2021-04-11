@@ -16,6 +16,9 @@ export class ContentComponent implements OnInit {
 
   get isProfile() {
     return this.page.currentPage === Page.Profile;
+  } 
+  get isTree1() {
+    return this.page.currentPage === Page.Tree1;
   }
 
 }

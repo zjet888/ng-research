@@ -1,0 +1,21 @@
+::ng-deep .p-sidebar-left {
+  height: calc(100% - 50px) !important;
+  top: 50px !important;
+}
+
+::ng-deep .p-sidebar .p-sidebar-close {
+  display: none;
+}
+
+.button-list {
+  ::ng-deep .p-selectbutton {
+    display: flex;
+    flex-direction: column;
+    ::ng-deep .p-button {
+      margin: 5px;
+      border-width: 1px;
+      border-color: black;
+      border-style: solid;
+    }
+  }
+}

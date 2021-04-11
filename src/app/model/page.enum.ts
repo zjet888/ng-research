@@ -1,3 +1,4 @@
 export enum Page {
-    Profile = 'profile'
+    Profile = 'profile',
+    Tree1 = 'leftRightTree'
 }

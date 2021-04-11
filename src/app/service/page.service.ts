@@ -19,6 +19,7 @@ export class PageService {
   }
   public set currentPage(value) {
     this._currentPage = value;
+    this.sidebarVisible = false;
   }
   constructor() { }
 }
