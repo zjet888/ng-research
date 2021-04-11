@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Page } from '../model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PageService {
   private _sidebarVisible = false;
@@ -20,6 +21,12 @@ export class PageService {
   public set currentPage(value) {
     this._currentPage = value;
     this.sidebarVisible = false;
+    this.router.navigate([], { queryParams: { p: value } });
   }
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute) {
+    let s = this.route.snapshot.queryParams['p'];
+    if (s) {
+      this._currentPage = s;
+    }
+  }
 }
