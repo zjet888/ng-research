@@ -1,4 +1,8 @@
 export enum Page {
-    Profile = 'profile',
-    Tree1 = 'leftRightTree'
+  Profile = 'profile',
+  TreeLeftRight = 'treeLeftRight',
+  TreeTopBottom = 'treeTopBottom',
+  TreeBottomTop = 'treeBottomTop',
+  TreeMultiple = 'treeMultiple',
+  TreeRadial = 'treeRadial',
 }

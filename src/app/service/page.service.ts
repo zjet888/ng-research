@@ -25,8 +25,10 @@ export class PageService {
   }
   constructor(private router: Router, private route: ActivatedRoute) {
     let s = this.route.snapshot.queryParams['p'];
-    if (s) {
+    if (s && (<any>Object).values(Page).includes(s)) {
       this._currentPage = s;
+    } else {
+      this.currentPage = Page.Profile;
     }
   }
 }

@@ -1,6 +1,9 @@
 {
   "title": "Ng 研究",
   "profile": "Profile",
-  "leftRightTree":"Left Right Tree"
-
+  "treeLeftRight": "Left Right Tree",
+  "treeTopBottom": "Top Bottom Tree",
+  "treeBottomTop": "Bottom Top Tree",
+  "treeMultiple": "Multiple Tree",
+  "treeRadial": "Radial Tree"
 }

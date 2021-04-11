@@ -5,15 +5,13 @@ import { MockService } from 'src/app/service/mock.service';
 import { AutoCleaner } from 'src/app/utility';
 
 @Component({
-  selector: 'app-left-right-tree',
-  templateUrl: './left-right-tree.component.html',
-  styleUrls: ['./left-right-tree.component.scss'],
+  template: '',
 })
-export class LeftRightTreeComponent extends AutoCleaner implements OnInit {
+export abstract class BaseTreeComponent extends AutoCleaner implements OnInit {
   option: any;
   data;
   echartsInstance: ECharts;
-  constructor(private mock: MockService) {
+  constructor(public mock: MockService) {
     super();
   }
 
@@ -29,7 +27,7 @@ export class LeftRightTreeComponent extends AutoCleaner implements OnInit {
     if (!this.data) {
       return;
     }
- 
+
     this.option = {
       backgroundColor: '#ffffff',
       tooltip: {
@@ -77,13 +75,15 @@ export class LeftRightTreeComponent extends AutoCleaner implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.echartsInstance) {
+    if (this.echartsInstance) {
       this.echartsInstance.showLoading();
     }
     let sub = this.mock.loadTreeData1().subscribe((d) => {
       this.data = d;
       this.createOption();
-      this.echartsInstance.hideLoading();
+      if (this.echartsInstance) {
+        this.echartsInstance.hideLoading();
+      }
     });
     this.subs.push(sub);
   }

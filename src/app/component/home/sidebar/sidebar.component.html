@@ -1,8 +1,13 @@
 <p-sidebar [(visible)]="page.sidebarVisible" [baseZIndex]="1">
-  <p-selectButton class="button-list" [options]="options" [(ngModel)]="selectedOption">
+  <p-selectButton
+    class="button-list"
+    [options]="options"
+    [(ngModel)]="selectedOption"
+  >
     <ng-template let-item>
       <div class="flex-box">
-        <i [class]="item.icon"></i><span>{{ item.id | translate }}</span>
+        <i [class]="item.icon"></i
+        ><span class="text">{{ item.id | translate }}</span>
       </div>
     </ng-template>
   </p-selectButton>

@@ -11,4 +11,7 @@ export class MockService {
   loadTreeData1() {
     return this.http.getJson(`/assets/data/tree/1.json`);
   }
+  loadTreeData2() {
+    return this.http.getJson(`/assets/data/tree/2.json`);
+  }
 }
