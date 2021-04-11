@@ -11,7 +11,7 @@ import { MultipleTreeComponent } from './component/home/content/tree/multiple-tr
 import { BottomTopTreeComponent } from './component/home/content/tree/bottom-top-tree/bottom-top-tree.component';
 import { TopBottomTreeComponent } from './component/home/content/tree/top-bottom-tree/top-bottom-tree.component';
 import { RightLeftTreeComponent } from './component/home/content/tree/right-left-tree/right-left-tree.component';
-import { PolygonTreeComponent } from './component/home/content/tree/polygon-tree/polygon-tree.component';
+import { PolylineTreeComponent } from './component/home/content/tree/polyline-tree/polyline-tree.component';
 import { RadialTreeComponent } from './component/home/content/tree/radial-tree/radial-tree.component';
 
 const routes: Routes = [
@@ -33,7 +33,7 @@ const modules = [SharedModule, EchartModule];
     BottomTopTreeComponent,
     TopBottomTreeComponent,
     RightLeftTreeComponent,
-    PolygonTreeComponent,
+    PolylineTreeComponent,
     RadialTreeComponent
   ]
 })

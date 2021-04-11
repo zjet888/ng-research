@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PolygonTreeComponent } from './polygon-tree.component';
+import { PolylineTreeComponent } from './polyline-tree.component';
 
-describe('PolygonTreeComponent', () => {
-  let component: PolygonTreeComponent;
-  let fixture: ComponentFixture<PolygonTreeComponent>;
+describe('PolylineTreeComponent', () => {
+  let component: PolylineTreeComponent;
+  let fixture: ComponentFixture<PolylineTreeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PolygonTreeComponent ]
+      declarations: [ PolylineTreeComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PolygonTreeComponent);
+    fixture = TestBed.createComponent(PolylineTreeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
