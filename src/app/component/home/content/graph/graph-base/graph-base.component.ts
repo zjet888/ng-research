@@ -86,7 +86,7 @@ export class GraphBaseComponent extends AutoCleaner implements OnInit {
     this.loadData();
   }
 
-  private loadData() {
+  protected loadData() {
     this.data = [];
     for (let i = 0; i < 16; i++) {
       this.data.push({
