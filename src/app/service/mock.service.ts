@@ -2,11 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MockService {
-
-  constructor(private http: HttpService) { }
+  loadGraphData1() {
+    return this.http.getJson(`/assets/data/graph/1.json`);
+  }
+  loadGraphData2() {
+    return this.http.getJson(`/assets/data/graph/2.json`);
+  }
+  loadGraphData3() {
+    return this.http.getJson(`/assets/data/graph/3.json`);
+  }
+  loadGraphData4() {
+    return this.http.getJson(`/assets/data/graph/4.json`);
+  }
+  constructor(private http: HttpService) {}
 
   loadTreeData1() {
     return this.http.getJson(`/assets/data/tree/1.json`);

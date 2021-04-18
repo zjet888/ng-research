@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ECharts } from 'echarts';
 import { MockService } from 'src/app/service/mock.service';
 import { AutoCleaner } from 'src/app/utility';
@@ -8,12 +8,20 @@ import { AutoCleaner } from 'src/app/utility';
   templateUrl: './graph-base.component.html',
   styleUrls: ['./graph-base.component.scss'],
 })
-export class GraphBaseComponent extends AutoCleaner implements OnInit {
+export class GraphBaseComponent
+  extends AutoCleaner
+  implements OnInit, AfterViewInit {
   option: any;
   data;
   echartsInstance: ECharts;
   constructor(public mock: MockService) {
     super();
+  }
+  ngAfterViewInit(): void {
+    if (this.echartsInstance) {
+      this.echartsInstance.showLoading();
+    }
+    this.loadData();
   }
 
   onChartClick(event) {
@@ -79,12 +87,7 @@ export class GraphBaseComponent extends AutoCleaner implements OnInit {
     };
   }
 
-  ngOnInit(): void {
-    if (this.echartsInstance) {
-      this.echartsInstance.showLoading();
-    }
-    this.loadData();
-  }
+  ngOnInit(): void {}
 
   protected loadData() {
     this.data = [];
