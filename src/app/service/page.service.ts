@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Page, PageTree } from '../model';
+import { Page, PageGraph, PageTree } from '../model';
 
 @Injectable({
   providedIn: 'root',
@@ -14,17 +14,16 @@ export class PageService {
     this._sidebarVisible = value;
   }
 
-  private _currentPageTree = PageTree.TreeLeftRight;
-  public get currentPageTree() {
-    return this._currentPageTree;
+  private _currentSubpage: PageTree | PageGraph = PageTree.TreeLeftRight;
+  public get currentSubPage() {
+    return this._currentSubpage;
   }
-  public set currentPageTree(value) {
-    this._currentPageTree = value;
-    // this.sidebarVisible = false;
+  public set currentSubPage(value) {
+    this._currentSubpage = value;
     this.router.navigate([], {
       queryParams: {
         ...this.route.snapshot.queryParams,
-        p: Page.PageTree,
+        p: this._currentPage,
         sp: value,
       },
     });
@@ -36,7 +35,6 @@ export class PageService {
   }
   public set currentPage(value) {
     this._currentPage = value;
-    // this.sidebarVisible = false;
     this.router.navigate([], {
       queryParams: { ...this.route.snapshot.queryParams, p: value },
     });
@@ -48,7 +46,8 @@ export class PageService {
 
   private fetchCurrentPage() {
     let s = this.route.snapshot.queryParams['p'];
-    if (s && (<any>Object).values(Page).includes(s)) {
+
+    if (s && Object.values(Page).includes(s)) {
       this._currentPage = s;
     } else {
       this.currentPage = Page.Profile;
@@ -57,10 +56,13 @@ export class PageService {
 
   private fetchCurrentSubPage() {
     let s = this.route.snapshot.queryParams['sp'];
-    if (s && (<any>Object).values(Page).includes(s)) {
-      this._currentPageTree = s;
+    let values = Object.values(PageTree);
+    let values1 = Object.values(PageGraph);
+    let valuesTotal = [...values, ...values1];
+    if (s && valuesTotal.includes(s)) {
+      this._currentSubpage = s;
     } else {
-      this.currentPageTree = PageTree.TreeLeftRight;
+      this.currentSubPage = PageTree.TreeLeftRight;
     }
   }
 }

@@ -12,7 +12,7 @@
     </ng-template>
   </p-selectButton> -->
 
-  <p-panelMenu [model]="options">
+  <p-panelMenu [model]="options" [transitionOptions]="'0ms'">
     <ng-template let-item>
       <div class="flex-box">
         <i [class]="item.icon"></i

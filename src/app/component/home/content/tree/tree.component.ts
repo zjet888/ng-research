@@ -12,24 +12,24 @@ export class TreeComponent implements OnInit {
 
   ngOnInit(): void {}
   get isTreeLeftRight() {
-    return this.page.currentPageTree === PageTree.TreeLeftRight;
+    return this.page.currentSubPage === PageTree.TreeLeftRight;
   }
   get isTreeRightLeft() {
-    return this.page.currentPageTree === PageTree.TreeRightLeft;
+    return this.page.currentSubPage === PageTree.TreeRightLeft;
   }
   get isTreeBottomTop() {
-    return this.page.currentPageTree === PageTree.TreeBottomTop;
+    return this.page.currentSubPage === PageTree.TreeBottomTop;
   }
   get isTreeMultiple() {
-    return this.page.currentPageTree === PageTree.TreeMultiple;
+    return this.page.currentSubPage === PageTree.TreeMultiple;
   }
   get isTreeRadial() {
-    return this.page.currentPageTree === PageTree.TreeRadial;
+    return this.page.currentSubPage === PageTree.TreeRadial;
   }
   get isTreePolyline() {
-    return this.page.currentPageTree === PageTree.TreePolyline;
+    return this.page.currentSubPage === PageTree.TreePolyline;
   }
   get isTreeTopBottom() {
-    return this.page.currentPageTree === PageTree.TreeTopBottom;
+    return this.page.currentSubPage === PageTree.TreeTopBottom;
   }
 }

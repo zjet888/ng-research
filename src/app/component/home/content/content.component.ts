@@ -19,4 +19,8 @@ export class ContentComponent implements OnInit {
   get isPageTree() {
     return this.page.currentPage === Page.PageTree;
   }
+
+  get isPageGraph() {
+    return this.page.currentPage === Page.Graph;
+  }
 }
