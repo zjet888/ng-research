@@ -1,5 +1,9 @@
 export enum Page {
   Profile = 'profile',
+  PageTree = 'treePage',
+}
+
+export enum PageTree {
   TreeLeftRight = 'treeLeftRight',
   TreeRightLeft = 'treeRightLeft',
   TreeTopBottom = 'treeTopBottom',

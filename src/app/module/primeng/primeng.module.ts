@@ -5,15 +5,23 @@ import { DropdownModule } from 'primeng/dropdown';
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { TreeModule } from 'primeng/tree';
 
-const modules = [CommonModule, ButtonModule, SelectButtonModule, DropdownModule, SidebarModule, RippleModule];
+const modules = [
+  PanelMenuModule,
+  CommonModule,
+  ButtonModule,
+  SelectButtonModule,
+  DropdownModule,
+  SidebarModule,
+  TreeModule,
+  RippleModule,
+];
 
 @NgModule({
   declarations: [],
-  imports: [
-    ...modules
-  ], exports: [
-    ...modules
-  ]
+  imports: [...modules],
+  exports: [...modules],
 })
-export class PrimengModule { }
+export class PrimengModule {}

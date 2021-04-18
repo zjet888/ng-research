@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Page } from 'src/app/model';
+import { Page, PageTree } from 'src/app/model';
 import { PageService } from 'src/app/service';
 
 @Component({
@@ -15,25 +15,8 @@ export class ContentComponent implements OnInit {
   get isProfile() {
     return this.page.currentPage === Page.Profile;
   }
-  get isTreeLeftRight() {
-    return this.page.currentPage === Page.TreeLeftRight;
-  }
-  get isTreeRightLeft() {
-    return this.page.currentPage === Page.TreeRightLeft;
-  }
-  get isTreeBottomTop() {
-    return this.page.currentPage === Page.TreeBottomTop;
-  }
-  get isTreeMultiple() {
-    return this.page.currentPage === Page.TreeMultiple;
-  }
-  get isTreeRadial() {
-    return this.page.currentPage === Page.TreeRadial;
-  }
-  get isTreePolyline() {
-    return this.page.currentPage === Page.TreePolyline;
-  }
-  get isTreeTopBottom() {
-    return this.page.currentPage === Page.TreeTopBottom;
+
+  get isPageTree() {
+    return this.page.currentPage === Page.PageTree;
   }
 }

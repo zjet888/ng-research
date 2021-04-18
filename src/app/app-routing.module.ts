@@ -13,6 +13,7 @@ import { TopBottomTreeComponent } from './component/home/content/tree/top-bottom
 import { RightLeftTreeComponent } from './component/home/content/tree/right-left-tree/right-left-tree.component';
 import { PolylineTreeComponent } from './component/home/content/tree/polyline-tree/polyline-tree.component';
 import { RadialTreeComponent } from './component/home/content/tree/radial-tree/radial-tree.component';
+import { TreeComponent } from './component/home/content/tree/tree.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -34,7 +35,8 @@ const modules = [SharedModule, EchartModule];
     TopBottomTreeComponent,
     RightLeftTreeComponent,
     PolylineTreeComponent,
-    RadialTreeComponent
+    RadialTreeComponent,
+    TreeComponent
   ]
 })
 export class AppRoutingModule { }
